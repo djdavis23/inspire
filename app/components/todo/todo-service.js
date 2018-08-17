@@ -21,10 +21,22 @@ export default class TodoService {
 		return user
 	}
 
+	get todoList() {
+		let todoListCopy = []
+		todoList.forEach(todo => {
+			let todoCopy = new Todo(todo)
+			todoListCopy.push(todoCopy)
+		})
+		return todoListCopy
+	}
+
 	getTodos(draw) {
+		console.log("service retrieving todo list")
 		todoApi.get('')
 			.then((res) => {
 				todoList = res.data.data
+				console.log("redrawing todo list")
+				console.log(todoList)
 				draw(todoList)
 			})
 			.catch(logError)
@@ -36,17 +48,25 @@ export default class TodoService {
 			.catch(logError)
 	}
 
-	toggleTodoStatus(todoId) {
-		// MAKE SURE WE THINK THIS ONE THROUGH
-		//STEP 1: Find the todo by its index **HINT** todoList
+	toggleTodoStatus(todoIndex, callBack) {
+		//retrieve todo object
+		var todo = todoList[todoIndex]
+		//toggle complete status
+		if (todo.completed) {
+			todo.completed = false
+		}
+		else {
+			todo.completed = true
+		}
+		todoList[todoIndex] = todo
 
-		var todo = {} ///MODIFY THIS LINE
-
-		//STEP 2: Change the completed flag to the opposite of what is is **HINT** todo.completed = !todo.completed
-		todoApi.put(todoId, todo)
+		//post change to server
+		todoApi.put(todo._id, todo)
 			.then(function (res) {
-				//DO YOU WANT TO DO ANYTHING WITH THIS?
+				console.log(res.data.message)
+				console.log(todo)
 			})
+			.then(callBack)
 			.catch(logError)
 	}
 

@@ -8,7 +8,7 @@ const numItems = document.getElementById("num-items")
 
 // Use this getTodos function as your callback for all other edits
 function getTodos() {
-	//FYI DONT EDIT ME :)
+	//FYI DONT EDIT ME :)	
 	console.log("controller getting todo list")
 	todoService.getTodos(draw)
 }
@@ -17,13 +17,42 @@ function draw(todos) {
 	let template = ''
 	let index = 0
 	todos.forEach(todo => {
-		template += `
-			<li><input type="checkbox" name="index${index}" />${todo.description} <i class="fas fa-trash-alt" onclick="app.controllers.todoController.removeTodo('${todo._id}')"></i></li>
+
+		//draw todo items based on state
+		if (todo.completed) {
+			template += `
+			<li>
+				<input type="checkbox" id="cb${index}" onclick="app.controllers.todoController.toggleTodoStatus(${index})" checked />
+					<span id="${todo._id}" class="complete">${todo.description} </span>
+				<i class="fas fa-trash-alt" 
+				onclick="app.controllers.todoController.removeTodo('${todo._id}')"></i>
+			</li>
 		`
+		}
+
+		// onclick="app.controllers.todoController.toggleTodoStatus(${index})"
+
+		else {
+			template += `
+			<li>
+				<input type="checkbox" id="cb${index}" onclick="app.controllers.todoController.toggleTodoStatus(${index})" />
+					<span id="${todo._id}">${todo.description} </span>
+				<i class="fas fa-trash-alt" 
+				onclick="app.controllers.todoController.removeTodo('${todo._id}')"></i>
+			</li>
+		`
+		}
 		index++
 	})
 	todoList.innerHTML = template
 	numItems.innerText = todos.length.toString()
+
+	//add event listeners
+	// for (let i = 0; i < todos.length; i++) {
+	// 	let checkbox = document.getElementById(`cb${i}`)
+	// 	console.log(checkbox)
+	// 	checkbox.addEventListener('click', toggleTodoStatus(event), { capture: true })
+	// }
 }
 
 
@@ -51,13 +80,15 @@ export default class TodoController {
 		//PASSES THE NEW TODO TO YOUR SERVICE
 		//DON'T FORGET TO REDRAW THE SCREEN WITH THE NEW TODO
 		//YOU SHOULDN'T NEED TO CHANGE THIS
-		todoService.addTodo(todo, getTodos)
+		todoService.addTodo(todo)
+		e.target.reset()
 		//^^^^^^^ EXAMPLE OF HOW TO GET YOUR TOODOS AFTER AN EDIT
+
 	}
 
-	toggleTodoStatus(todoId) {
+	toggleTodoStatus(todoIndex) {
 		// asks the service to edit the todo status
-		todoService.toggleTodoStatus(todoId, getTodos)
+		todoService.toggleTodoStatus(todoIndex, getTodos)
 		// YEP THATS IT FOR ME
 	}
 

@@ -16,3 +16,7 @@
 #todo-list {
   list-style-type: none;
 }
+
+.complete {
+  text-decoration: line-through;
+}
