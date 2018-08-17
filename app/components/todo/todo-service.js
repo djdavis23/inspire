@@ -20,8 +20,6 @@ export default class TodoService {
 
 	setUser(userName) {
 		user = userName
-		//todoApi.baseURL = `https://bcw-sandbox.herokuapp.com/api/${user}/todos/`
-		console.log(todoApi.baseURL)
 	}
 
 	get user() {
