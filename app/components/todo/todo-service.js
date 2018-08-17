@@ -1,11 +1,11 @@
 import Todo from "../../models/Todo.js"
 
 let todoList = []
-let user = 'Don'
+let user = ''
 
 //@ts-ignore
-const todoApi = axios.create({
-	baseURL: `https://bcw-sandbox.herokuapp.com/api/${user}/todos/`,
+var todoApi = axios.create({
+	baseURL: `https://bcw-sandbox.herokuapp.com/api/`,
 	timeout: 3000
 });
 
@@ -13,9 +13,16 @@ function logError(e) {
 	console.log(e)
 }
 
+// ${user}/todos/
 
 
 export default class TodoService {
+
+	setUser(userName) {
+		user = userName
+		//todoApi.baseURL = `https://bcw-sandbox.herokuapp.com/api/${user}/todos/`
+		console.log(todoApi.baseURL)
+	}
 
 	get user() {
 		return user
@@ -31,8 +38,14 @@ export default class TodoService {
 	}
 
 	getTodos(draw) {
-		console.log("service retrieving todo list")
-		todoApi.get('')
+		if (!user) {
+			draw(todoList)
+			console.log('redraw empty local todo list')
+			return
+		}
+
+		console.log("getting items from server for: " + user)
+		todoApi.get(`${user}/todos/`)
 			.then((res) => {
 				todoList = res.data.data
 				console.log("redrawing todo list")
@@ -40,10 +53,12 @@ export default class TodoService {
 				draw(todoList)
 			})
 			.catch(logError)
+
 	}
 
 	addTodo(todo, callBack) {
-		todoApi.post('', todo)
+		console.log("adding todo: ", todo)
+		todoApi.post(`${user}/todos/`, todo)
 			.then(callBack)
 			.catch(logError)
 	}
@@ -61,7 +76,7 @@ export default class TodoService {
 		todoList[todoIndex] = todo
 
 		//post change to server
-		todoApi.put(todo._id, todo)
+		todoApi.put(`${user}/todos/${todo._id}`, todo)
 			.then(function (res) {
 				console.log(res.data.message)
 				console.log(todo)
@@ -71,7 +86,7 @@ export default class TodoService {
 	}
 
 	removeTodo(todoId, callBack) {
-		todoApi.delete(todoId)
+		todoApi.delete(`${user}/todos/${todoId}`)
 			.then(callBack)
 			.catch(logError)
 

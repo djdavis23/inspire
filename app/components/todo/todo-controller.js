@@ -46,13 +46,6 @@ function draw(todos) {
 	})
 	todoList.innerHTML = template
 	numItems.innerText = todos.length.toString()
-
-	//add event listeners
-	// for (let i = 0; i < todos.length; i++) {
-	// 	let checkbox = document.getElementById(`cb${i}`)
-	// 	console.log(checkbox)
-	// 	checkbox.addEventListener('click', toggleTodoStatus(event), { capture: true })
-	// }
 }
 
 
@@ -66,7 +59,12 @@ export default class TodoController {
 	// toggleTodoStatus takes in a todo marks its status as completed and puts it to the server
 	// removeTodo takes in a todoId and sends a delete request to the server
 	// **** HINT: Everytime you make a change to any todo don't forget to get the todo list again
-
+	setUser(e) {
+		e.preventDefault()
+		let user = e.target.username.value
+		todoService.setUser(user)
+		getTodos()
+	}
 
 	addTodoFromForm(e) {
 		e.preventDefault() // <-- hey this time its a freebie don't forget this

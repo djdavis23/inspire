@@ -12,6 +12,10 @@
   color: white;
   text-shadow: 2px 2px 1px black;
 }
+#user {
+  color: white;
+  text-shadow: 2px 2px 1px black;
+}
 
 #todo-list {
   list-style-type: none;
