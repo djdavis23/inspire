@@ -10,15 +10,15 @@
 </head>
 
 <body id="body">
-	<div id="weather">
+	<div id="weather" class="white">
 
 	</div>
 
-	<div id="quote">
+	<div id="quote" class="white">
 
 	</div>
 
-	<div id="todo">
+	<div id="todo" class="white">
 		<h4>To do list (
 			<span id="num-items"></span>)</h4>
 		<ul id="todo-list">
@@ -32,10 +32,13 @@
 
 	</div>
 
-	<div id="user">
+	<div id="user" class="white">
 		<form onsubmit="app.controllers.userController.setUser(event);app.controllers.todoController.setUser(event)">
 			<input type="text" name="username" placeholder="Enter your name" />
 		</form>
+	</div>
+	<div id="clock" class="white">
+
 	</div>
 
 

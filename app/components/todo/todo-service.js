@@ -87,7 +87,6 @@ export default class TodoService {
 		todoApi.delete(`${user}/todos/${todoId}`)
 			.then(callBack)
 			.catch(logError)
-
 	}
 
 }

@@ -1,18 +1,4 @@
-#weather {
-  color: white;
-  text-shadow: 2px 2px 1px black;
-}
-
-#quote {
-  color: white;
-  text-shadow: 2px 2px 1px black;
-}
-
-#todo {
-  color: white;
-  text-shadow: 2px 2px 1px black;
-}
-#user {
+.white {
   color: white;
   text-shadow: 2px 2px 1px black;
 }
