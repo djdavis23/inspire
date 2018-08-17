@@ -1,26 +1,35 @@
 import TodoService from "./todo-service.js";
 
 
-
 var todoService = new TodoService
+const todoList = document.getElementById("todo-list")
+const numItems = document.getElementById("num-items")
+
 
 // Use this getTodos function as your callback for all other edits
 function getTodos() {
 	//FYI DONT EDIT ME :)
+	console.log("controller getting todo list")
 	todoService.getTodos(draw)
 }
 
 function draw(todos) {
-	//WHAT IS MY PURPOSE?
-	//BUILD YOUR TODO TEMPLATE HERE
-	var template = ''
-	//DONT FORGET TO LOOP
+	let template = ''
+	let index = 0
+	todos.forEach(todo => {
+		template += `
+			<li><input type="checkbox" name="index${index}" />${todo.description} <i class="fas fa-trash-alt" onclick="app.controllers.todoController.removeTodo('${todo._id}')"></i></li>
+		`
+		index++
+	})
+	todoList.innerHTML = template
+	numItems.innerText = todos.length.toString()
 }
 
 
 export default class TodoController {
 	constructor() {
-		// IF YOU WANT YOUR TODO LIST TO DRAW WHEN THE PAGE FIRST LOADS WHAT SHOULD YOU CALL HERE???
+		getTodos()
 	}
 	// You will need four methods
 	// getTodos should request your api/todos and give an array of todos to your callback fn
@@ -33,11 +42,12 @@ export default class TodoController {
 	addTodoFromForm(e) {
 		e.preventDefault() // <-- hey this time its a freebie don't forget this
 		// TAKE THE INFORMATION FORM THE FORM
-		var form = e.target
-		var todo = {
-			// DONT FORGET TO BUILD YOUR TODO OBJECT
+		console.log(e.target.newItem.value)
+		let todo = {
+			description: e.target.newItem.value,
+			completed: false,
+			user: todoService.user
 		}
-
 		//PASSES THE NEW TODO TO YOUR SERVICE
 		//DON'T FORGET TO REDRAW THE SCREEN WITH THE NEW TODO
 		//YOU SHOULDN'T NEED TO CHANGE THIS
@@ -52,9 +62,7 @@ export default class TodoController {
 	}
 
 	removeTodo(todoId) {
-		// ask the service to run the remove todo with this id
-
-		// ^^^^ THIS LINE OF CODE PROBABLY LOOKS VERY SIMILAR TO THE toggleTodoStatus
+		todoService.removeTodo(todoId, getTodos)
 	}
 
 

@@ -2,32 +2,44 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Inspire</title>
+	<title>Inspired by Don</title>
+	<link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.3/sandstone/bootstrap.min.css" rel="stylesheet" integrity="sha384-CfCAYEgrdtRrpvjGKxoaRy5ge1ggMbxNSpEkY+XqdfdRTUkRrYZVB2z99E7BsEDZ"
+	 crossorigin="anonymous">
+	<link rel="stylesheet" href="assets/css/all.css">
 	<link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body id="body">
 	<div id="weather">
-		Your Weather Template
+
 	</div>
 
 	<div id="quote">
-		The Quote
+
 	</div>
 
 	<div id="todo">
-		<form onsubmit=""></form>
-		A Todo List
+		<h4>To do list (
+			<span id="num-items"></span>)</h4>
+		<ul id="todo-list">
+
+
+		</ul>
+		<form onsubmit="app.controllers.todoController.addTodoFromForm(event)">
+			<input type="text" name="newItem" placeholder="Enter new item here">
+			<!-- <input type="submit" name="submit" value="Add to list"> -->
+		</form>
+
 	</div>
 
 
 
 
 	<!--JS Libraries-->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+	<script src=" https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js "></script>
 	<!--Initialize App-->
 
-	<script type='module' src="app/main.js"></script>
+	<script type='module' src="app/main.js "></script>
 </body>
 
 </html>
