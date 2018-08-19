@@ -6,7 +6,7 @@ function draw(quote) {
 	console.log(quote)
 	let template = `
 		<h2>${quote.quote}</h2>
-		<h4>${quote.author}</h4>
+		<h4>- ${quote.author}</h4>
 	`
 
 	document.getElementById("quote").innerHTML = template

@@ -1,5 +1,5 @@
 import ImageService from "./image-service.js";
-let day = 17
+
 
 //Your ImageService is a global class what can you do here to instantiate it?
 const imageService = new ImageService()
@@ -13,7 +13,7 @@ function draw(image) {
 
 export default class ImageController {
   constructor() {
-    imageService.getImage(day, draw)
+    imageService.getImage(draw)
   }
 
 }

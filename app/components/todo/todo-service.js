@@ -64,14 +64,9 @@ export default class TodoService {
 	toggleTodoStatus(todoIndex, callBack) {
 		//retrieve todo object
 		var todo = todoList[todoIndex]
-		//toggle complete status
-		if (todo.completed) {
-			todo.completed = false
-		}
-		else {
-			todo.completed = true
-		}
-		todoList[todoIndex] = todo
+
+		//toggle complete status		
+		todo.completed = !todo.completed
 
 		//post change to server
 		todoApi.put(`${user}/todos/${todo._id}`, todo)

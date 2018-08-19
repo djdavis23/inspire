@@ -2,11 +2,16 @@ import UserService from "./user-service.js"
 
 let userService = new UserService
 
-function drawUser(user) {
+function drawGreeting(user) {
   let template = `
     <h1>Hello ${user}<h1>  
   `
-  document.getElementById("user").innerHTML = template
+  document.getElementById("greeting").innerHTML = template
+  document.getElementById("user").classList.add("hidden")
+  document.getElementById("clock").classList.add("hidden")
+  document.getElementById("quote").classList.remove("hidden")
+  document.getElementById("weather").classList.remove("hidden")
+  document.getElementById("todo").classList.remove("hidden")
 }
 
 function setClock() {
@@ -38,7 +43,7 @@ export default class UserController {
     let user = e.target.username.value
     userService.setUser(user)
     setClock()
-    drawUser(user)
+    drawGreeting(user)
   }
 
 

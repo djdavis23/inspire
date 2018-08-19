@@ -10,3 +10,46 @@
 .complete {
   text-decoration: line-through;
 }
+
+#header {
+  height: 10vh;
+  font-size: 3rem;
+}
+
+#center {
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#footer {
+  height: 20vh;  
+  font-family: 'Courgette', cursive;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+#username {
+  width: 70%;
+  font-size: 2em;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: transparent;
+  text-align: center;
+  border-bottom: 1px solid white;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+#new-todo {
+  margin-left: 37px;
+  background-color: transparent;
+  color: white;
+}
+
+.hidden {
+  display: none;
+}
