@@ -5,8 +5,8 @@ let qs = new QuoteService
 function draw(quote) {
 	console.log(quote)
 	let template = `
-		<h2>${quote.quote}</h2>
-		<h4>- ${quote.author}</h4>
+		<h2 class="right">${quote.quote}</h2>
+		<h4 class-"right">- ${quote.author}</h4>
 	`
 
 	document.getElementById("quote").innerHTML = template

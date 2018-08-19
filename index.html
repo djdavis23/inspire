@@ -27,20 +27,20 @@
 					<div class="col-md-12 flex">
 						<div id="user" class="white">
 							<form onsubmit="app.controllers.userController.setUser(event);app.controllers.todoController.setUser(event)">
-								<input id="username" type="text" name="username" placeholder="Enter your name" />
+								<input id="username" type="text" name="username" placeholder="Enter your name" autocomplete="off" />
 							</form>
 						</div>
 					</div>
 				</div>
 				<div id="footer" class="row">
 					<!-- quote -->
-					<div id="quote" class="col-md-12 white hidden">
+					<div id="quote" class="col-md-12 white hidden pr-3">
 
 					</div>
 				</div>
 			</div>
 			<!-- info panel -->
-			<div class="col-md-3">
+			<div id="info-panel" class="col-md-3">
 
 				<div id="clock" class="white hidden">
 
