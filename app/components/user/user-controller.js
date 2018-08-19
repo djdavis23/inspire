@@ -20,11 +20,15 @@ function setClock() {
   var h = today.getHours();
   let m = today.getMinutes();
   let s = today.getSeconds();
-  //h = formatTime(h)
   m = formatTime(m)
   s = formatTime(s)
+  let h12 = convertTime(h)
+  let suffix = " AM"
+  if (h >= 12) {
+    suffix = " PM"
+  }
   document.getElementById("clock").innerHTML = `
-    <h1>${h}:${m}:${s}
+    <h1>${h12}:${m}:${s}${suffix}
   `
   var t = setTimeout(setClock, 500);
   return h;
@@ -35,6 +39,13 @@ function formatTime(x) {
     x = '0' + x
   }
   return x
+}
+
+function convertTime(h) {
+  if (h != 12) {
+    h = h % 12
+  }
+  return h
 }
 
 function setGreeting(hour) {
