@@ -1,15 +1,6 @@
-.white {
-  color: white;
-  text-shadow: 2px 2px 1px black;
-}
 
-#todo-list {
-  list-style-type: none;
-}
 
-.complete {
-  text-decoration: line-through;
-}
+/* ELEMENT STYLING */
 
 #header {
   height: 10vh;
@@ -39,23 +30,39 @@
   width: 50%;
   font-size: 2em;
   margin-left: auto;
-  margin-right: auto;
-  /* background-color: transparent; */
+  margin-right: auto;  
   text-align: center;
-  /* border-bottom: 1px solid white;
-  border-top: none;
-  border-left: none;
-  border-right: none; */
-}
-
-#new-todo {
-  margin-left: 37px;
-  /* background-color: transparent; */
+  color: white;
 }
 
 #zip {
   font-size: 1.2em;
   color: white;
+}
+
+#weather-icon {
+  font-size: 3rem;
+}
+
+#todo-list {
+  list-style-type: none;
+}
+
+#new-todo {
+  margin-left: 37px; 
+  color: white; 
+}
+
+
+/* HELPER CLASSES */
+
+.white {
+  color: white;
+  text-shadow: 2px 2px 1px black;
+}
+
+.complete {
+  text-decoration: line-through;
 }
 
 .hidden {
@@ -87,4 +94,10 @@
 ::ms-input-placeholder {
   color: white;
   opacity: 0.7;  
+}
+
+@media screen and (max-width: 576px) {
+  #center {
+    height: 0;
+  }
 }

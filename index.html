@@ -7,6 +7,8 @@
 	 crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
 	<link rel="stylesheet" href="assets/css/all.css">
+	<link rel="stylesheet" href="assets/css/weather-icons.css">
+	<link rel="stylesheet" href="assets/css/weather-icons-wind.css">
 	<link rel="stylesheet" href="assets/css/style.css">
 </head>
 
@@ -14,17 +16,17 @@
 	<main class="container-fluid">
 		<div class="row">
 			<!-- main panel -->
-			<div class="col-md-9">
+			<div class="col-md-9 col-xs-12">
 				<div id="header" class="row">
 					<!-- greeting -->
-					<div id="greeting" class="col-md-12 white text-center mt-3">
+					<div id="greeting" class="col-md-12 col-xs-12 white text-center mt-3">
 
 					</div>
 
 				</div>
 				<div id="center" class="row">
 					<!-- login and mobile info -->
-					<div class="col-md-12 flex">
+					<div class="col-md-12 col-xs-12 flex">
 						<div id="user" class="white">
 							<form onsubmit="app.controllers.userController.setUser(event);app.controllers.todoController.setUser(event)">
 								<input class="input" id="username" type="text" name="username" placeholder="Enter your name" autocomplete="off" />
@@ -34,13 +36,13 @@
 				</div>
 				<div id="footer" class="row">
 					<!-- quote -->
-					<div id="quote" class="col-md-12 white hidden pr-5">
+					<div id="quote" class="col-md-12 col-xs-12 white hidden pr-5">
 
 					</div>
 				</div>
 			</div>
 			<!-- info panel -->
-			<div id="info-panel" class="col-md-3">
+			<div id="info-panel" class="col-md-3 col-xs-12">
 
 				<div id="clock" class="white hidden mt-2">
 
@@ -51,7 +53,7 @@
 
 				</div>
 
-				<div id="todo" class="white hidden mt-5">
+				<div id="todo" class="white hidden mt-3">
 					<h4>To do list (
 						<span id="num-items"></span>)</h4>
 					<ul id="todo-list">
@@ -59,7 +61,7 @@
 
 					</ul>
 					<form onsubmit="app.controllers.todoController.addTodoFromForm(event)">
-						<input class="input" id="new-todo" type="text" name="newItem" placeholder="Enter new item here">
+						<input class="input" id="new-todo" type="text" name="newItem" placeholder="Enter new item here" autocomplete="off">
 					</form>
 
 				</div>

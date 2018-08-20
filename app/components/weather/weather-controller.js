@@ -9,13 +9,16 @@ function draw(weather) {
 	<label for="zip">Zip Code:<form onsubmit="app.controllers.weatherController.getWeather(event)">
 		<input class="input" id="zip" type="text" name="zip" placeholder="${weatherService.myZip}"></label>
 	</form>
-	<h3>Temp:  ${weather.temp.toFixed(0)}&#176F &emsp;  Skies:  ${weather.sky}</h3>
+	<h3> Current weather for ${weather.city}</h3>
+	<i id="weather-icon" class="${weather.icon}"></i>
+	<h3>Temp:  ${weather.temp.toFixed(0)}&#176F &ensp;  Skies:  ${weather.sky}</h3>
 	<h3>Wind: ${wind.speed.toFixed(0)} mph, ${wind.direction}<h3>
 	<hr />
 `
 	document.getElementById("weather").innerHTML = template;
 }
 
+//convert raw wind data to commonly used units
 function convertWind(weather) {
 	//convert windspeed from m/s to mi/hr
 	let wSpeed = weather.windSpeed * (3600 / 1600)
@@ -62,7 +65,6 @@ export default class WeatherController {
 		e.preventDefault();
 		let zip = e.target.zip.value
 		weatherService.getWeather(draw, zip)
-		//What can you do with this weather object?
 	}
 }
 

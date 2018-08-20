@@ -18,7 +18,7 @@ function draw(todos) {
 	let index = 0
 	todos.forEach(todo => {
 
-		//draw todo items based on state
+		//draw todo items based on state (complete or incomplete)
 		if (todo.completed) {
 			template += `
 			<li>
@@ -29,8 +29,6 @@ function draw(todos) {
 			</li>
 		`
 		}
-
-		// onclick="app.controllers.todoController.toggleTodoStatus(${index})"
 
 		else {
 			template += `
@@ -53,12 +51,8 @@ export default class TodoController {
 	constructor() {
 		getTodos()
 	}
-	// You will need four methods
-	// getTodos should request your api/todos and give an array of todos to your callback fn
-	// addTodo takes in a todo and posts it to the server
-	// toggleTodoStatus takes in a todo marks its status as completed and puts it to the server
-	// removeTodo takes in a todoId and sends a delete request to the server
-	// **** HINT: Everytime you make a change to any todo don't forget to get the todo list again
+
+	//get user-specific todos upon login
 	setUser(e) {
 		e.preventDefault()
 		let user = e.target.username.value
@@ -66,28 +60,24 @@ export default class TodoController {
 		getTodos()
 	}
 
+	//add new todo to server from user input
 	addTodoFromForm(e) {
-		e.preventDefault() // <-- hey this time its a freebie don't forget this
-		// TAKE THE INFORMATION FORM THE FORM
+		e.preventDefault()
 		console.log(e.target.newItem.value)
 		let todo = {
 			description: e.target.newItem.value,
 			completed: false,
 			user: todoService.user
 		}
-		//PASSES THE NEW TODO TO YOUR SERVICE
-		//DON'T FORGET TO REDRAW THE SCREEN WITH THE NEW TODO
-		//YOU SHOULDN'T NEED TO CHANGE THIS
 		todoService.addTodo(todo, getTodos)
 		e.target.reset()
-		//^^^^^^^ EXAMPLE OF HOW TO GET YOUR TOODOS AFTER AN EDIT
+
 
 	}
 
 	toggleTodoStatus(todoIndex) {
 		// asks the service to edit the todo status
 		todoService.toggleTodoStatus(todoIndex, getTodos)
-		// YEP THATS IT FOR ME
 	}
 
 	removeTodo(todoId) {

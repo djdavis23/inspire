@@ -13,9 +13,6 @@ function logError(e) {
 	console.log(e)
 }
 
-// ${user}/todos/
-
-
 export default class TodoService {
 
 	setUser(userName) {
@@ -36,12 +33,13 @@ export default class TodoService {
 	}
 
 	getTodos(draw) {
+		//if no user logged in, todo list is empty
 		if (!user) {
 			draw(todoList)
 			console.log('redraw empty local todo list')
 			return
 		}
-
+		//once user logs in, look for todo list on server
 		console.log("getting items from server for: " + user)
 		todoApi.get(`${user}/todos/`)
 			.then((res) => {

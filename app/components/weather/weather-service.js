@@ -31,13 +31,17 @@ export default class WeatherService {
 		console.log('Calling the Weatherman for zip', myZip)
 		weatherApi.get(`?zip=${myZip},us&APPID=60380726350c8c1cdc2e15f0eab13384`)
 			.then(function (res) {
-				//localStorage.setItem('weather', JSON.stringify(res.data))
 				console.log(res.data)
 				let myWeather = new Weather(res.data)
+				console.log("weather id", myWeather.id)
+				myWeather.icon = myWeather.getIcon(myWeather.id)
+				console.log("weather icon: ", myWeather.icon)
 				callWhenDone(myWeather);
 			})
 			.catch(logError)
 	}
 }
+
+
 
 //&APPID=60380726350c8c1cdc2e15f0eab13384
