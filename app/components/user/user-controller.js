@@ -1,6 +1,10 @@
 import UserService from "./user-service.js"
 
+let user = ''
 let userService = new UserService
+let greetUpdate = setInterval(updateGreeting, 60000)
+
+
 
 function drawGreeting(user, greet) {
   let template = `
@@ -72,13 +76,22 @@ function setGreeting(hour) {
   return greet
 }
 
+function updateGreeting() {
+  if (!user) { return }
+  let greet = setGreeting(new Date().getHours())
+  document.getElementById("greeting").innerHTML = `
+  <h1>${greet}${user}<h1>
+  `
+  console.log("greeting updated")
+}
+
 export default class UserController {
 
 
   setUser(e) {
     e.preventDefault()
     console.log(e.target.username.value)
-    let user = e.target.username.value
+    user = e.target.username.value
     userService.setUser(user)
     let hour = setClock()
     let greet = setGreeting(hour)
