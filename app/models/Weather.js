@@ -8,7 +8,7 @@ export default class Weather {
     this.temp = tempConvert(data.main.temp)
     this.humidity = data.main.humidity
     this.sky = data.weather[data.weather.length - 1].main
-    this.windSpeed = data.wind.windSpeed
+    this.windSpeed = data.wind.speed
     this.windDir = data.wind.deg
     this.sunrise = data.sys.sunrise
     this.sunset = data.sys.sunset

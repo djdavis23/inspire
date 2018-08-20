@@ -27,14 +27,14 @@
 					<div class="col-md-12 flex">
 						<div id="user" class="white">
 							<form onsubmit="app.controllers.userController.setUser(event);app.controllers.todoController.setUser(event)">
-								<input id="username" type="text" name="username" placeholder="Enter your name" autocomplete="off" />
+								<input class="input" id="username" type="text" name="username" placeholder="Enter your name" autocomplete="off" />
 							</form>
 						</div>
 					</div>
 				</div>
 				<div id="footer" class="row">
 					<!-- quote -->
-					<div id="quote" class="col-md-12 white hidden pr-3">
+					<div id="quote" class="col-md-12 white hidden pr-5">
 
 					</div>
 				</div>
@@ -42,16 +42,16 @@
 			<!-- info panel -->
 			<div id="info-panel" class="col-md-3">
 
-				<div id="clock" class="white hidden">
+				<div id="clock" class="white hidden mt-2">
 
 				</div>
 
-				<div id="weather" class="white hidden">
+				<div id="weather" class="white hidden mt-5">
 
 
 				</div>
 
-				<div id="todo" class="white hidden">
+				<div id="todo" class="white hidden mt-5">
 					<h4>To do list (
 						<span id="num-items"></span>)</h4>
 					<ul id="todo-list">
@@ -59,8 +59,7 @@
 
 					</ul>
 					<form onsubmit="app.controllers.todoController.addTodoFromForm(event)">
-						<input id="new-todo" type="text" name="newItem" placeholder="Enter new item here">
-						<!-- <input type="submit" name="submit" value="Add to list"> -->
+						<input class="input" id="new-todo" type="text" name="newItem" placeholder="Enter new item here">
 					</form>
 
 				</div>

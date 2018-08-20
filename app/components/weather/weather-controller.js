@@ -3,12 +3,52 @@ import WeatherService from "./weather-service.js";
 var weatherService = new WeatherService()
 
 function draw(weather) {
+	let wind = convertWind(weather)
 	let template = `
-<h3>Temp:  ${weather.temp.toFixed(0)}&#176F</h3>
-<h3>Skies:  ${weather.sky}<h3>
-
+	
+	<label for="zip">Zip Code:<form onsubmit="app.controllers.weatherController.getWeather(event)">
+		<input class="input" id="zip" type="text" name="zip" placeholder="${weatherService.myZip}"></label>
+	</form>
+	<h3>Temp:  ${weather.temp.toFixed(0)}&#176F &emsp;  Skies:  ${weather.sky}</h3>
+	<h3>Wind: ${wind.speed.toFixed(0)} mph, ${wind.direction}<h3>
+	<hr />
 `
 	document.getElementById("weather").innerHTML = template;
+}
+
+function convertWind(weather) {
+	//convert windspeed from m/s to mi/hr
+	let wSpeed = weather.windSpeed * (3600 / 1600)
+	let wDir = ''
+	if (weather.windDir >= 340 || weather.windDir <= 20) {
+		wDir = "N"
+	}
+	else if (weather.windDir > 20 || weather.windDir < 70) {
+		wDir = "NE"
+	}
+	else if (weather.windDir >= 70 || weather.windDir <= 110) {
+		wDir = "E"
+	}
+	else if (weather.windDir > 110 || weather.windDir < 160) {
+		wDir = "SE"
+	}
+	else if (weather.windDir >= 160 || weather.windDir <= 200) {
+		wDir = "S"
+	}
+	else if (weather.windDir > 200 || weather.windDir < 250) {
+		wDir = "SW"
+	}
+	else if (weather.windDir >= 250 || weather.windDir <= 290) {
+		wDir = "W"
+	}
+	else {
+		wDir = "NW"
+	}
+
+	return {
+		speed: wSpeed,
+		direction: wDir
+	}
 }
 
 
@@ -16,10 +56,12 @@ export default class WeatherController {
 
 	constructor() {
 		//this will fire off get weather right away
-		this.getWeather()
+		weatherService.getWeather(draw, '83646')
 	}
-	getWeather() {
-		weatherService.getWeather(draw)
+	getWeather(e) {
+		e.preventDefault();
+		let zip = e.target.zip.value
+		weatherService.getWeather(draw, zip)
 		//What can you do with this weather object?
 	}
 }

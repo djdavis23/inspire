@@ -1,12 +1,18 @@
 import Weather from "../../models/Weather.js";
 
+var myZip = ''
+
 const url = '//bcw-getter.herokuapp.com/?url=';
-const url2 = 'http://api.openweathermap.org/data/2.5/weather?q=boise&&APPID=bd82255fd0a21fa1238699b9eda2ee35'
+var url2 = 'http://api.openweathermap.org/data/2.5/weather'
 const apiUrl = url + encodeURIComponent(url2);
+
+
+
+//q=boise&&APPID=bd82255fd0a21fa1238699b9eda2ee35
 
 //@ts-ignore
 const weatherApi = axios.create({
-	baseURL: apiUrl,
+	baseURL: url2,
 	timeout: 3000
 });
 
@@ -16,9 +22,14 @@ function logError(e) {
 
 export default class WeatherService {
 
-	getWeather(callWhenDone) {
-		console.log('Calling the Weatherman')
-		weatherApi.get()
+	get myZip() {
+		return myZip
+	}
+
+	getWeather(callWhenDone, zip) {
+		myZip = zip;
+		console.log('Calling the Weatherman for zip', myZip)
+		weatherApi.get(`?zip=${myZip},us&APPID=60380726350c8c1cdc2e15f0eab13384`)
 			.then(function (res) {
 				//localStorage.setItem('weather', JSON.stringify(res.data))
 				console.log(res.data)
@@ -28,3 +39,5 @@ export default class WeatherService {
 			.catch(logError)
 	}
 }
+
+//&APPID=60380726350c8c1cdc2e15f0eab13384
