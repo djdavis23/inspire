@@ -28,13 +28,15 @@ export default class Weather {
     let prefix = 'wi wi-';
     let icon = code
 
-    let hour = new Date().getHours()
-    let sunrise = new Date(this.sunrise * 1000).getHours()
-    let sunset = new Date(this.sunset * 1000).getHours()
+    let now = new Date()
+    let sunrise = new Date(this.sunrise * 1000)
+    let sunset = new Date(this.sunset * 1000)
     console.log("sunrise", sunrise)
+    console.log("sunset", sunset)
+    console.log("now", now)
     let tod = "night-"
     //determine if it is day or night
-    if (hour >= sunrise && hour <= sunset) {
+    if (now >= sunrise && now <= sunset) {
       tod = "day-"
     }
     //ids between 700-799 and 900-999 do not have day prefixes
