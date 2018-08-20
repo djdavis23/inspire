@@ -6,14 +6,14 @@ function draw(weather) {
 	let wind = convertWind(weather)
 	let template = `
 	
-	<label for="zip">Zip Code:<form onsubmit="app.controllers.weatherController.getWeather(event)">
-		<input class="input" id="zip" type="text" name="zip" placeholder="${weatherService.myZip}"></label>
-	</form>
-	<h3> Current weather for ${weather.city}</h3>
-	<i id="weather-icon" class="${weather.icon}"></i>
-	<h3>Temp:  ${weather.temp.toFixed(0)}&#176F &ensp;  Skies:  ${weather.sky}</h3>
-	<h3>Wind: ${wind.speed.toFixed(0)} mph, ${wind.direction}<h3>
-	<hr />
+		<label for="zip">Zip Code:<form onsubmit="app.controllers.weatherController.getWeather(event)">
+			<input class="input" id="zip" type="text" name="zip" placeholder="${weatherService.myZip}"></label>
+		</form>
+		<h3> Current weather for ${weather.city}</h3>
+		<i id="weather-icon" class="${weather.icon}"></i>
+		<h3>Temp:  ${weather.temp.toFixed(0)}&#176F &ensp;  Skies:  ${weather.sky}</h3>
+		<h3>Wind: ${wind.speed.toFixed(0)} mph, ${wind.direction}<h3>
+		<hr />
 `
 	document.getElementById("weather").innerHTML = template;
 }

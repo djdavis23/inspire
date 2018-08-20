@@ -3,7 +3,7 @@ import Weather from "../../models/Weather.js";
 var myZip = ''
 
 const url = '//bcw-getter.herokuapp.com/?url=';
-var url2 = 'http://api.openweathermap.org/data/2.5/weather'
+var url2 = 'https://api.openweathermap.org/data/2.5/weather'
 const apiUrl = url + encodeURIComponent(url2);
 
 
