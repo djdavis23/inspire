@@ -100,5 +100,22 @@
   #center {
     height: 0;
   }
+
+  #greeting {
+    padding-bottom: 40px;
+  }
+
+  #quote {
+    margin-top: 0;
+    padding-top: 10px;
+  }
+
+  #username {
+    width: 75%;
+  }
+
+  #footer {
+    height: auto;
+  }
   
 }
