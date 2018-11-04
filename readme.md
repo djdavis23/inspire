@@ -1,3 +1,6 @@
+
+This was a class project done to practice http requests using Axios as an http client to fetch data from multiple RESTful APIs
+
 ## Inspire
 
 Inspiration can be difficult to achieve. Keep track of your many important tasks and the weather with the suttle help of a random daily quote and beatiful scenery.   
